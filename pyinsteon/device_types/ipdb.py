@@ -2,7 +2,10 @@
 import collections
 import logging
 
-from . import (PLM, ClimateControl_Thermostat, ClimateControl_WirelessThermostat, DimmableLightingControl,
+from . import (PLM, ClimateControl_Thermostat, 
+               ClimateControl_WirelessThermostat, 
+               ClimateControl_Thermostat_2441V,
+               DimmableLightingControl,
                DimmableLightingControl_DinRail,
                DimmableLightingControl_FanLinc,
                DimmableLightingControl_InLineLinc,
@@ -237,7 +240,7 @@ class IPDB:
         Product(0x05, 0x00, None, "Broan SMSC080 Exhaust Fan", "", UnknownDevice),
         Product(0x05, 0x01, 0x000002, "EZTherm", "", UnknownDevice),
         Product(0x05, 0x02, None, "Broan SMSC110 Exhaust Fan", "", UnknownDevice),
-        Product(0x05, 0x03, 0x00001F, "Thermostat Adapter", "2441V", ClimateControl_Thermostat),
+        Product(0x05, 0x03, 0x00001F, "Thermostat Adapter", "2441V", ClimateControl_Thermostat_2441V),
         Product(0x05, 0x04, 0x000024, "EZTherm", "", UnknownDevice),
         Product(0x05, 0x05, 0x000038, "Broan, Venmar, BEST Rangehoods", "", UnknownDevice),
         Product(0x05, 0x07, None, 'Wireless Thermostat', '2441ZTH', ClimateControl_WirelessThermostat),

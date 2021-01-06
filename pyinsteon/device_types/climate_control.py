@@ -41,7 +41,7 @@ from ..handlers.from_device.thermostat_heat_set_point import (
 )
 from ..handlers.from_device.thermostat_mode import ThermostatModeHandler
 from ..handlers.from_device.thermostat_humidity import ThermostatHumidityHandler
-from ..handlers.from_device.thermostat_temperature import ThermostatTemperatureHandler
+from ..handlers.from_device.thermostat_temperature import ThermostatTemperatureHandler, ThermostatTemperatureHandler2441V
 from ..handlers.to_device.thermostat_cool_set_point import ThermostatCoolSetPointCommand
 from ..handlers.to_device.thermostat_heat_set_point import ThermostatHeatSetPointCommand
 from ..handlers.to_device.thermostat_mode import ThermostatModeCommand
@@ -491,3 +491,27 @@ class ClimateControl_WirelessThermostat(BatteryDeviceBase, ClimateControl_Thermo
             super(BatteryDeviceBase, self).async_set_heat_set_point,
             temperature=temperature,
         )
+
+
+class ClimateControl_Thermostat_2441V(ClimateControl_Thermostat):
+    """Thermostat 2441V device."""
+
+    def __init__(self, address, cat, subcat, firmware=0x00, description="", model=""):
+        """Init the Wireless Thermostat class."""
+        super(ClimateControl_Thermostat_2441V, self).__init__(
+            address=address,
+            cat=cat,
+            subcat=subcat,
+            firmware=firmware,
+            description=description,
+            model=model,
+        )
+        self._aldb = ALDB(self._address, mem_addr=0x1FFF)
+
+    def _register_handlers_and_managers(self):
+        """Register thermostat handlers and managers."""
+        super()._register_handlers_and_managers()
+        self._handlers["temperature_handler"] = ThermostatTemperatureHandler2441V(
+            self._address
+        )
+
